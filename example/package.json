@@ -6,6 +6,7 @@
     "test": "./node_modules/.bin/gulp"
   },
   "devDependencies": {
-    "gulp": "^3.8.10"
+    "gulp": "^3.8.10",
+    "gulp-rename": "^1.2.2"
   }
 }

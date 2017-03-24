@@ -1,0 +1,19 @@
+{
+  "name": "gulp-css-scala",
+  "version": "1.0.0",
+  "description": "Gulp Custom plugin for convert css to scala",
+  "main": "index.js",
+  "keywords": [
+    "gulpplugin",
+    "css",
+    "scala"
+  ],
+  "author": "Steve Brandt",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-dest": "^0.2.2",
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0"
+  }
+}

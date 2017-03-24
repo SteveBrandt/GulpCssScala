@@ -1,0 +1,11 @@
+{
+  "name": "gulp-css-scala-example",
+  "version": "0.0.1",
+  "dependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/gulp"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  }
+}

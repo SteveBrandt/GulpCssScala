@@ -7,3 +7,21 @@
 .baz{
     color:yellow;
 }
+.foo__bar{
+    color:red;
+}
+.bar__baz{
+    color:green;
+}
+.baz__foo{
+    color:yellow;
+}
+.foo--bar{
+    color:red;
+}
+.bar--baz{
+    color:green;
+}
+.baz--foo{
+    color:yellow;
+}

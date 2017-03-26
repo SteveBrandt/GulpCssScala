@@ -4,7 +4,7 @@ const PLUGIN_NAME = 'gulp-css-scala';
 var through = require('through2'),
     gutil = require('gulp-util'),
     css = require('css'),
-    merge = require('merge-options'),
+    mergeOptions = require('merge-options'),
     PluginError = gutil.PluginError;
 
 var defaultOptions = {
@@ -39,10 +39,10 @@ var selectorsFromInput = function(input) {
 // __                     -> Child
 var normalizeSelector = function(selector) {
     return selector
-        .replace('--', '-As-')
-        .replace('__', '-Child-')
-        .replace('_', '-')
-        .replace('.', '')
+        .replace(/--/g, '-As-')
+        .replace(/__/g, '-Child-')
+        .replace(/_/g, '-')
+        .replace(/\./g, '')
         .split('-')
         .map(function(word, idx) {
             // Capitalize first char for consecutive words
@@ -64,7 +64,7 @@ var createOutput = function(input,options) {
             + 'class ' + options.className + ' {' + "\n";
     
     selectorsFromInput(input).forEach(function(selector) {
-        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector.replace('.','') + '"' + "\n"
+        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector.replace(/\./g,'') + '"' + "\n"
     });
 
     output += '}';
@@ -74,7 +74,7 @@ var createOutput = function(input,options) {
 
 var gulpCssScala = function(opts) {
 
-    var options = merge(defaultOptions, opts);
+    var options = mergeOptions(defaultOptions, opts);
 
     return through.obj(function (file, enc, callback) {
         var inputString = null,

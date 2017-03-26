@@ -31,3 +31,12 @@
 .baz--foo{
     color:yellow;
 }
+.foo-bar-baz{
+    color:red;
+}
+.foo--bar--baz{
+    color:green;
+}
+.foo__bar__baz{
+    color:yellow;
+}

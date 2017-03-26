@@ -11,5 +11,8 @@ class Css {
   val bazChildFoo: String = "baz__foo"
   val foo: String = "foo"
   val fooAsBar: String = "foo--bar"
+  val fooAsBarAsBaz: String = "foo--bar--baz"
+  val fooBarBaz: String = "foo-bar-baz"
   val fooChildBar: String = "foo__bar"
+  val fooChildBarChildBaz: String = "foo__bar__baz"
 }

@@ -1,9 +1,9 @@
 # gulp-css-scala
 
-##Build
+## Build
 `npm install`
 
-##Test example
+## Test example
 `cd ./example`
 
 `npm install`

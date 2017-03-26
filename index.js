@@ -5,18 +5,21 @@ var through = require('through2'),
     css = require('css'),
     PluginError = gutil.PluginError;
 
-var createOutputString = function(className,inputString){
-    var outputString = 'class '+className+'{}';
-
-    var obj = css.parse(inputString);
-
-    obj.stylesheet.rules.forEach(function(rule){
-        console.log(JSON.stringify(rule.selectors));
+var selectorsFromInput = function(input){
+    var selectors = new Array(),
+        parsedCss = css.parse(input);
+    parsedCss.stylesheet.rules.forEach(function(rule){
+        selectors = selectors.concat(rule.selectors);
     });
+    return selectors;
+};
 
-    //console.log(JSON.stringify(obj.stylesheet.rules));
-    console.log(outputString);
-    return outputString;
+var createOutput = function(className,input){
+    var output = 'class '+className+'{}';
+
+    console.log(selectorsFromInput(input));
+    console.log(output);
+    return output;
 };
 
 var gulpCssScala = function(className) {
@@ -33,7 +36,7 @@ var gulpCssScala = function(className) {
         isBuffer = file.isBuffer();
         if(isBuffer){
             inputString = new String(file.contents);
-            result = createOutputString(className,inputString);
+            result = createOutput(className,inputString);
             outBuffer = new Buffer(result);
             var aFile = new gutil.File();
             aFile.path = file.path;

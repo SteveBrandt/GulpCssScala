@@ -5,13 +5,22 @@ var through = require('through2'),
     css = require('css'),
     PluginError = gutil.PluginError;
 
+
+// sort and remove duplicates
+var beautify = function(array) {
+    return array.sort().filter(function(item, position, source) {
+        return !position || item !== source[position - 1];
+    })
+};
+
+// parse css input and return selectors
 var selectorsFromInput = function(input){
-    var selectors = new Array(),
+    var selectors = [],
         parsedCss = css.parse(input);
     parsedCss.stylesheet.rules.forEach(function(rule){
         selectors = selectors.concat(rule.selectors);
     });
-    return selectors.sort();
+    return beautify(selectors);
 };
 
 var createOutput = function(className,input){

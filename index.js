@@ -2,11 +2,19 @@
 const PLUGIN_NAME = 'gulp-css-scala';
 var through = require('through2'),
     gutil = require('gulp-util'),
+    css = require('css'),
     PluginError = gutil.PluginError;
 
 var createOutputString = function(className,inputString){
     var outputString = 'class '+className+'{}';
-    console.log(inputString);
+
+    var obj = css.parse(inputString);
+
+    obj.stylesheet.rules.forEach(function(rule){
+        console.log(JSON.stringify(rule.selectors));
+    });
+
+    //console.log(JSON.stringify(obj.stylesheet.rules));
     console.log(outputString);
     return outputString;
 };

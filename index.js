@@ -11,7 +11,7 @@ var selectorsFromInput = function(input){
     parsedCss.stylesheet.rules.forEach(function(rule){
         selectors = selectors.concat(rule.selectors);
     });
-    return selectors;
+    return selectors.sort();
 };
 
 var createOutput = function(className,input){

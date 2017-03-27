@@ -32,7 +32,7 @@ var selectorsFromInput = function(input) {
         .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
         .replace(/{([^}]*)}/gm,'~~~')
         .replace(/(\r\n|\n|\r)/gm,'')
-        .replace(/{|}| |,/gm,'')
+        .replace(/[{} ,]/gm,'')
         .split("~~~");
 
     console.log(beautify(selectors));

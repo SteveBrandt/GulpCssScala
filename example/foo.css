@@ -41,7 +41,7 @@
     color:yellow;
 }
 @media (min-width: 30em) and (max-width: 60em) {
-    .bug {
+    .foo--media {
         color:red;
     }
 }

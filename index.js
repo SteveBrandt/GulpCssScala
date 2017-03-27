@@ -3,29 +3,39 @@
 const PLUGIN_NAME = 'gulp-css-scala';
 var through = require('through2'),
     gutil = require('gulp-util'),
-    css = require('css'),
     mergeOptions = require('merge-options'),
     PluginError = gutil.PluginError;
+
+var i ='';
 
 var defaultOptions = {
     packageName :   'com.example.css',
     className   :   'Css'
 };
 
-// sort and remove duplicates
+// sort and remove duplicates and empty items
 var beautify = function(array) {
     return array.sort().filter(function(item, position, source) {
+        // duplicates
         return !position || item !== source[position - 1];
-    })
+    }).filter(function(item){
+        // empty items
+        return (item !== (undefined || ''));
+    });
 };
 
 // parse css input and return selectors
 var selectorsFromInput = function(input) {
-    var selectors = [],
-        parsedCss = css.parse(input);
-    parsedCss.stylesheet.rules.forEach(function(rule) {
-        selectors = selectors.concat(rule.selectors);
-    });
+
+    var selectors = input
+        .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
+        .replace(/{([^}]*)}/gm,'~~~')
+        .replace(/(\r\n|\n|\r)/gm,'')
+        .replace(/\.|{|}| |,/gm,'')
+        .split("~~~");
+
+    console.log(beautify(selectors));
+
     return beautify(selectors);
 };
 
@@ -64,7 +74,7 @@ var createOutput = function(input,options) {
             + 'class ' + options.className + ' {' + "\n";
     
     selectorsFromInput(input).forEach(function(selector) {
-        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector.replace(/\./g,'') + '"' + "\n"
+        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector + '"' + "\n"
     });
 
     output += '}';

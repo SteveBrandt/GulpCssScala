@@ -9,6 +9,7 @@ class Css {
   val baz: String = "baz"
   val bazAsFoo: String = "baz--foo"
   val bazChildFoo: String = "baz__foo"
+  val bug: String = "bug"
   val foo: String = "foo"
   val fooAsBar: String = "foo--bar"
   val fooAsBarAsBaz: String = "foo--bar--baz"

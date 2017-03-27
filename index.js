@@ -6,8 +6,6 @@ var through = require('through2'),
     mergeOptions = require('merge-options'),
     PluginError = gutil.PluginError;
 
-var i ='';
-
 var defaultOptions = {
     packageName :   'com.example.css',
     className   :   'Css'
@@ -21,6 +19,9 @@ var beautify = function(array) {
     }).filter(function(item){
         // empty items
         return (item !== (undefined || ''));
+    }).filter(function(item){
+        // only class selectors
+        return (item.indexOf('.') === 0);
     });
 };
 
@@ -31,7 +32,7 @@ var selectorsFromInput = function(input) {
         .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
         .replace(/{([^}]*)}/gm,'~~~')
         .replace(/(\r\n|\n|\r)/gm,'')
-        .replace(/\.|{|}| |,/gm,'')
+        .replace(/{|}| |,/gm,'')
         .split("~~~");
 
     console.log(beautify(selectors));
@@ -74,7 +75,7 @@ var createOutput = function(input,options) {
             + 'class ' + options.className + ' {' + "\n";
     
     selectorsFromInput(input).forEach(function(selector) {
-        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector + '"' + "\n"
+        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector.replace(/\./g, '') + '"' + "\n"
     });
 
     output += '}';

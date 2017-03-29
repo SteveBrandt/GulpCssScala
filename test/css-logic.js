@@ -6,15 +6,50 @@ var assert = require('assert'),
 var cssScala = rewire('../index.js');
 
 describe('cssScala logic', function() {
-    xdescribe('beautify', function() {
-        it('should ...', function() {
-            assert.equal(-1, [1,2,3].indexOf(4));
+    describe('beautify', function() {
+        it('should remove non class selectors', function() {
+            var testSelectors = [ '.foo', '#bar', '.baz' ];
+
+            var result = cssScala.__get__('beautify')(testSelectors);
+
+            assert.equal(result.includes('.foo'), true);
+            assert.equal(result.includes('#bar'), false);
+        });
+
+        it('should remove doubled entries', function() {
+            var testSelectors = [ '.foo', '.bar', '.foo' ];
+
+            var result = cssScala.__get__('beautify')(testSelectors);
+
+            assert.equal(result.indexOf('.foo'), result.lastIndexOf('.foo'));
         });
     });
 
-    xdescribe('normalizeInput', function() {
-        it('should ...', function() {
-            assert.equal(-1, [1,2,3].indexOf(4));
+    describe('normalizeInput', function() {
+        it('should remove @media css definitions', function() {
+            var mediaCss = "\n.fooStyle { color:red }\n"
+                         + "@media screen and (min-width: 480px) {\n"
+                         + "  body { background-color: lightgreen; }\n"
+                         + "}\n"
+                         + ".barStyle { color: green }\n";
+
+            var result = cssScala.__get__('normalizeInput')(mediaCss);
+
+            assert.equal(result.includes('.fooStyle'), true);
+            assert.equal(result.includes('.barStyle'), true);
+        });
+
+
+        it('should remove css bodies', function() {
+            var mediaCss = "\n.fooStyle { color:red }\n"
+                         + ".barStyle { color: green }\n";
+
+            var result = cssScala.__get__('normalizeInput')(mediaCss);
+
+            assert.equal(result.includes('.fooStyle'), true);
+            assert.equal(result.includes('color'), false);
+            assert.equal(result.indexOf('{'), -1);
+            assert.equal(result.indexOf('}'), -1);
         });
     });
 
@@ -40,7 +75,7 @@ describe('cssScala logic', function() {
 
         camelCaseTests.forEach(function(test) {
             it('should return selector "' + test.input + '" in lowerCamelCase', function() {
-                assert.equal(cssScala.__get__('normalizeSelector')(test.input, {}), test.expected);
+                assert.equal(cssScala.__get__('normalizeSelector')(test.input), test.expected);
             });
         });
 
@@ -55,7 +90,7 @@ describe('cssScala logic', function() {
 
         hierachyTests.forEach(function(test) {
             it('should return selector "' + test.input + '" respecting css hierachy (As, With)', function() {
-                assert.equal(cssScala.__get__('normalizeSelector')(test.input, {}), test.expected);
+                assert.equal(cssScala.__get__('normalizeSelector')(test.input), test.expected);
             });
         });
     });

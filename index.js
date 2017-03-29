@@ -13,26 +13,27 @@ var defaultOptions = {
 
 // sort and remove duplicates and empty items
 var beautify = function(array) {
-    return array.sort().filter(function(item, position, source) {
-        // duplicates
-        return !position || item !== source[position - 1];
-    }).filter(function(item){
-        // empty items
-        return (item !== (undefined || ''));
-    }).filter(function(item){
-        // only class selectors
-        return (item.indexOf('.') === 0);
-    });
+    return array.sort()
+        .filter(function(item, position, source) {
+            // duplicates
+            return !position || item !== source[position - 1];
+        }).filter(function(item) {
+            // empty items
+            return (item !== (undefined || ''));
+        }).filter(function(item) {
+            // only class selectors
+            return (item.indexOf('.') === 0);
+        });
 };
 
 var normalizeInput = function(input) {
     return input
-    // remove media queries
+        // remove media queries
         .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
         // remove css definition
         .replace(/{([^}]*)}/gm,'');
-    //TODO remove css comments from input
-    //.replace(/\/\*([^*]|(\*+([^*/])))*\*\/+/g, '');
+        //TODO remove css comments from input
+        //.replace(/\/\*([^*]|(\*+([^*/])))*\*\/+/g, '');
 };
 
 // parse css input and return selectors

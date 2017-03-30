@@ -17,8 +17,9 @@
     "gulp": "^3.9.0",
     "gulp-dest": "^0.2.2",
     "gulp-util": "^3.0.6",
-    "merge-options": "^0.0.64",
+    "merge-options": "0.0.64",
     "mocha": "^3.2.0",
+    "rewire": "^2.5.2",
     "through2": "^2.0.0"
   }
 }

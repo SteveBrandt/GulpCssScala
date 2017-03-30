@@ -25,6 +25,7 @@
 .foo--bar{
     color:red;
 }
+/* comment file.scss */
 .bar--baz{
     color:green;
 }

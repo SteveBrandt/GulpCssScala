@@ -31,6 +31,7 @@ describe('cssScala logic', function() {
                          + '@media screen and (min-width: 480px) {\n'
                          + '  body { background-color: lightgreen; }\n'
                          + '}\n'
+                         + '/* comment file.scss */ '
                          + '.barStyle { color: green }\n';
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);

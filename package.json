@@ -21,6 +21,7 @@
     "merge-options": "^0.0.64",
     "mocha": "^3.2.0",
     "should": "^11.2.1",
-    "through2": "^2.0.0"
+    "through2": "^2.0.0",
+    "vinyl": "^2.0.1"
   }
 }

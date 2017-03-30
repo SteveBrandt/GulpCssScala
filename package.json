@@ -14,13 +14,13 @@
   "author": "Steve Brandt",
   "license": "MIT",
   "devDependencies": {
-    "event-stream": "^3.3.4",
-    "gulp": "^3.9.0",
-    "gulp-dest": "^0.2.2",
-    "gulp-util": "^3.0.6",
+    "event-stream": "3.3.4",
+    "gulp": "3.9.0",
+    "gulp-dest": "0.2.2",
+    "gulp-util": "3.0.6",
     "merge-options": "0.0.64",
-    "mocha": "^3.2.0",
-    "should": "^11.2.1",
-    "through2": "^2.0.0"
+    "mocha": "3.2.0",
+    "should": "11.2.1",
+    "through2": "2.0.0"
   }
 }

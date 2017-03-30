@@ -42,8 +42,6 @@ var styleClassSelectorsFromInput = function(input) {
     var regex = /\.[\w|-]+/g;
     var selectors = normalizeInput(input).match(regex);
 
-    console.log(beautify(selectors));
-
     return beautify(selectors);
 };
 

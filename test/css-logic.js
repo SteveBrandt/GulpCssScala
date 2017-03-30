@@ -27,11 +27,11 @@ describe('cssScala logic', function() {
 
     describe('normalizeInput', function() {
         it('should remove @media css definitions', function() {
-            var mediaCss = "\n.fooStyle { color:red }\n"
-                         + "@media screen and (min-width: 480px) {\n"
-                         + "  body { background-color: lightgreen; }\n"
-                         + "}\n"
-                         + ".barStyle { color: green }\n";
+            var mediaCss = '\n.fooStyle { color:red }\n'
+                         + '@media screen and (min-width: 480px) {\n'
+                         + '  body { background-color: lightgreen; }\n'
+                         + '}\n'
+                         + '.barStyle { color: green }\n';
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);
 
@@ -41,8 +41,8 @@ describe('cssScala logic', function() {
 
 
         it('should remove css bodies', function() {
-            var mediaCss = "\n.fooStyle { color:red }\n"
-                         + ".barStyle { color: green }\n";
+            var mediaCss = '\n.fooStyle { color:red }\n'
+                         + '.barStyle { color: green }\n';
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);
 
@@ -53,9 +53,19 @@ describe('cssScala logic', function() {
         });
     });
 
-    xdescribe('styleClassSelectorsFromInput', function() {
-        xit('should ...', function() {
-            assert.equal(-1, [1,2,3].indexOf(4));
+    describe('styleClassSelectorsFromInput', function() {
+        it('should return class selectors', function() {
+            var css = '\n.fooStyle { color:red }\n'
+                + 'div#baz { color:green }\n'
+                + '@media screen and (min-width: 480px) {\n'
+                + '  body { background-color: lightgreen; }\n'
+                + '}\n'
+                + '.barStyle { color: green }\n';
+
+            var result = cssScala.__get__('styleClassSelectorsFromInput')(css);
+
+            assert.equal(result[0], '.barStyle' );
+            assert.equal(result[1], '.fooStyle' );
         });
     });
 

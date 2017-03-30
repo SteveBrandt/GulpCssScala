@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     cssScala = require('../index.js');
 
 var options = {
-    className:'Css',
+    objectName:'Css',
     packageName:'com.example.css'
 };
 

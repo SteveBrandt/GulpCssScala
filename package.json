@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Gulp Custom Plugin to convert style classes from css file into one scala object",
   "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
   "keywords": [
     "gulpplugin",
     "css",
@@ -11,10 +14,13 @@
   "author": "Steve Brandt",
   "license": "MIT",
   "devDependencies": {
+    "event-stream": "^3.3.4",
     "gulp": "^3.9.0",
     "gulp-dest": "^0.2.2",
     "gulp-util": "^3.0.6",
-    "merge-options": "0.0.64",
+    "merge-options": "^0.0.64",
+    "mocha": "^3.2.0",
+    "should": "^11.2.1",
     "through2": "^2.0.0"
   }
 }

@@ -4,6 +4,9 @@
 
 Gulp Custom Plugin to convert style classes from css file into a scala object
 
+## Usage
+`npm install gulp-css-scala --save`
+
 ## Build
 `npm install`
 

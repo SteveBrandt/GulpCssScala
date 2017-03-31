@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/SteveBrandt/gulp-css-scala.svg?branch=master)](https://travis-ci.org/SteveBrandt/gulp-css-scala)
 
+Gulp Custom Plugin to convert style classes from css file into a scala object
+
 ## Build
 `npm install`
 

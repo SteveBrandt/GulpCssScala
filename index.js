@@ -33,7 +33,7 @@ var normalizeInput = function(input) {
         // remove css definition
         .replace(/{([^}]*)}/gm,'')
         // remove css comments from input
-        .replace(/\/\*([^*]|(\*+([^*/])))*\*\/+/g, '');
+        .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '' );
 };
 
 // parse css input and return selectors

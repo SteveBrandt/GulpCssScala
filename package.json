@@ -15,6 +15,7 @@
   "repository": "https://github.com/SteveBrandt/gulp-css-scala",
   "license": "MIT",
   "devDependencies": {
+    "event-stream": "^3.3.4",
     "gulp": "^3.9.0",
     "gulp-dest": "^0.2.2",
     "gulp-util": "^3.0.6",

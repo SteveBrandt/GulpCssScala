@@ -24,9 +24,10 @@ gulp.task('default', function() {
     pipe(gulp.dest('dest'));
 });
 ```
-This will create a new `Css.scala` object in the directory `dest` from the given css file `foo.css`
+This will create a new `Css.scala` object in the directory `dest` from the given css file `foo.css`.
+**Only style classes are considered.**
 
-Input (foo.css):
+**Input (foo.css):**
 ```css
 .foo{
     color:red;
@@ -40,7 +41,7 @@ Input (foo.css):
 
 ```
 
-Output (Css.scala):
+**Output (Css.scala):**
 ```scala
 package com.example.css
 
@@ -52,5 +53,21 @@ object Css {
   val fooChildBar: String = "foo__bar"
 }
 ```
+
+## Options
+
+```js
+cssScala({
+    packageName:'com.example.css', 
+    objectName:'Css'
+})
+```
+
+|Name|Description|Default|
+|---|---|---|
+|packageName|The name of the package of the generated object|com.example.css|
+|objectName|The name of the generated object|Css|
+
+
 
 

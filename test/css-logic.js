@@ -106,7 +106,7 @@ describe('cssScala logic', function() {
         });
     });
 
-    describe('createOutput', function() {
+    xdescribe('createOutput', function() {
         it('should return a valid scala object', function() {
 
             var css = '\n.foo { color:red }\n';

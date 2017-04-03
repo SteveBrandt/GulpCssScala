@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     rename = require('gulp-rename'),
-    cssScala = require('../index.js');
+    cssScala = require('gulp-css-scala');
 
 var options = {
     objectName:'Css',

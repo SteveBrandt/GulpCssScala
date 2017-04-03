@@ -18,7 +18,7 @@ var rename = require('gulp-rename'),
     cssScala = require('gulp-css-scala');
 
 gulp.task('default', function() {
-    gulp.src('foo.css').
+    return gulp.src('style/foo.css').
     pipe(cssScala()).
     pipe(rename('Css.scala')).
     pipe(gulp.dest('dest'));
@@ -53,6 +53,18 @@ object Css {
   val fooChildBar: String = "foo__bar"
 }
 ```
+
+## Additional css style selectors
+
+```
+gulp.task('default', function() {
+    return gulp.src(['styles/*.css', 'additional-style-class-selectors.txt']).
+    pipe(cssScala()).
+    pipe(rename('Css.scala')).
+    pipe(gulp.dest('dest'));
+});
+```
+
 
 ## Options
 

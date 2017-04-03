@@ -13,6 +13,10 @@ var defaultOptions = {
 
 var selectors = [];
 
+var resetSelectors = function () {
+    selectors = [];
+};
+
 // sort and remove duplicates and empty items
 var beautify = function(array) {
     return array.sort()
@@ -92,6 +96,8 @@ var createOutput = function(input, options) {
 var gulpCssScala = function(opts) {
 
     var options = mergeOptions(defaultOptions, opts);
+
+    resetSelectors();
 
     return through.obj(function (file, enc, callback) {
         var inputString = null,

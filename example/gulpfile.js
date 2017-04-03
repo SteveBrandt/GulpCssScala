@@ -8,7 +8,7 @@ var options = {
 };
 
 gulp.task('default', function() {
-    gulp.src('foo.css').
+    return gulp.src(['foo.css', 'additional-style-class-selectors.txt']).
     pipe(cssScala(options)).
     pipe(rename('Css.scala')).
     pipe(gulp.dest('dest'));

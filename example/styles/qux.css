@@ -1,0 +1,9 @@
+.qux{
+    color:red;
+}
+
+@media (min-width: 30em) and (max-width: 60em) {
+    .qux--media {
+        color:red;
+    }
+}

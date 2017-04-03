@@ -11,6 +11,8 @@ var defaultOptions = {
     objectName   :   'Css'
 };
 
+var selectors = [];
+
 // sort and remove duplicates and empty items
 var beautify = function(array) {
     return array.sort()
@@ -40,7 +42,9 @@ var normalizeInput = function(input) {
 var styleClassSelectorsFromInput = function(input) {
 
     var regex = /\.[\w|-]+/g;
-    var selectors = normalizeInput(input).match(regex);
+    selectors = selectors.concat(
+        normalizeInput(input.toString()).match(regex)
+    );
 
     return beautify(selectors);
 };
@@ -102,6 +106,7 @@ var gulpCssScala = function(opts) {
 
         if (file.isBuffer()) {
             inputString = new String(file.contents);
+
             result = createOutput(inputString, options);
             outBuffer = new Buffer(result);
             var aFile = new gutil.File();

@@ -4,7 +4,8 @@
   "description": "Gulp Custom Plugin to convert style classes from css file into a scala object",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint index.js"
   },
   "keywords": [
     "gulpplugin",
@@ -15,6 +16,7 @@
   "repository": "https://github.com/SteveBrandt/gulp-css-scala",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^3.19.0",
     "event-stream": "^3.3.4",
     "gulp": "^3.9.0",
     "gulp-dest": "^0.2.2",

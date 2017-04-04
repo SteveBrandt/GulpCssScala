@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     rename = require('gulp-rename'),
-    cssScala = require('../index');
+    cssScala = require('gulp-css-scala');
 
 gulp.task('simple', function() {
     return gulp.src('styles/foo.css').

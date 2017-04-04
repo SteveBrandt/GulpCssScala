@@ -4,6 +4,7 @@
 
 Gulp Custom Plugin to convert style classes from css file into a scala object
 
+
 ## Installation 
 
 `npm install gulp-css-scala --save-dev`
@@ -18,25 +19,26 @@ var rename = require('gulp-rename'),
     cssScala = require('gulp-css-scala');
 
 gulp.task('default', function() {
-    gulp.src('foo.css').
-    pipe(cssScala()).
-    pipe(rename('Css.scala')).
-    pipe(gulp.dest('dest'));
+    return gulp.src('style/foo.css').
+        pipe(cssScala()).
+        pipe(rename('Css.scala')).
+        pipe(gulp.dest('dest'));
 });
 ```
+
 This will create a new `Css.scala` object in the directory `dest` from the given css file `foo.css`.
 **Only style classes are considered.**
 
 **Input (foo.css):**
 ```css
-.foo{
-    color:red;
+.foo {
+    color: red;
 }
-.foo__bar{
-    color:red;
+.foo__bar {
+    color: red;
 }
-.foo--bar{
-    color:red;
+.foo--bar {
+    color: red;
 }
 
 ```
@@ -54,12 +56,25 @@ object Css {
 }
 ```
 
+
+## Additional css style selectors
+
+```
+gulp.task('default', function() {
+    return gulp.src(['styles/*.css', 'additional-style-class-selectors.txt']).
+        pipe(cssScala()).
+        pipe(rename('Css.scala')).
+        pipe(gulp.dest('dest'));
+});
+```
+
+
 ## Options
 
 ```js
 cssScala({
-    packageName:'com.example.css', 
-    objectName:'Css'
+    packageName: 'com.example.css', 
+    objectName: 'Css'
 })
 ```
 
@@ -67,7 +82,4 @@ cssScala({
 |---|---|---|
 |packageName|The name of the package of the generated object|com.example.css|
 |objectName|The name of the generated object|Css|
-
-
-
 

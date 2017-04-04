@@ -7,8 +7,8 @@ const through = require('through2'),
     PluginError = gutil.PluginError;
 
 const defaultOptions = {
-    packageName :   'com.example.css',
-    objectName   :   'Css'
+    packageName: 'com.example.css',
+    objectName:  'Css'
 };
 
 
@@ -34,7 +34,7 @@ const normalizeInput = function(input) {
         // remove css definition
         .replace(/{([^}]*)}/gm,'')
         // remove css comments from input
-        .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '' );
+        .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '');
 };
 
 // active                 -> active
@@ -63,7 +63,7 @@ const normalizeSelector = function(selector) {
 };
 
 // parse css input and return selectors
-const styleClassSelectorsFromInput= function(input, selectors) {
+const styleClassSelectorsFromInput = function(input, selectors) {
 
     const regex = /\.[\w|-]+/g;
     selectors = selectors.concat(

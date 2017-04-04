@@ -14,8 +14,12 @@ describe('gulp-css-scala', function() {
         contents: new Buffer('.foo {color:blue}')
     });
 
-    it('should generate a scala file', function(done) {
+    var fakeFileBar = new gutil.File({
+        path: 'bar.css',
+        contents: new Buffer('.bar {color:green}')
+    });
 
+    it('should generate a scala file', function(done) {
         var myCssScala = cssScala();
 
         myCssScala.write(fakeFile);
@@ -32,11 +36,9 @@ describe('gulp-css-scala', function() {
             assert.equal(file.contents.toString(), expectedObject);
             done();
         });
-
     });
 
     it('should generate a scala file with custom options', function(done) {
-
         var myCssScala = cssScala({packageName:'my.package', objectName: 'MyObject'});
 
         myCssScala.write(fakeFile);
@@ -53,6 +55,5 @@ describe('gulp-css-scala', function() {
             assert.equal(file.contents.toString(), expectedObject);
             done();
         });
-
     });
 });

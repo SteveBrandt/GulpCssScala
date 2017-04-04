@@ -7,7 +7,7 @@ const assert = require('assert'),
     es = require('event-stream'),
     path = require('path');
 
-describe('gulp-css-scala', function() {
+describe('module spec', function() {
 
     const fakeFile = new gutil.File({
         path: 'foo.css',

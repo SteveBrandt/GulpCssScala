@@ -5,7 +5,7 @@ var assert = require('assert'),
 
 var cssScala = rewire('../index.js');
 
-describe('cssScala logic', function() {
+describe('logic spec', function() {
     describe('beautify', function() {
         it('should remove non class selectors', function() {
             var testSelectors = [ '.foo', '#bar', '.baz' ];
@@ -98,7 +98,7 @@ describe('cssScala logic', function() {
             {input: 'foo__bar', expected: 'fooChildBar'},
             {input: 'foo__bar__baz', expected: 'fooChildBarChildBaz'},
             {input: 'foo--bar__baz--void', expected: 'fooAsBarChildBazAsVoid'},
-            {input: 'foo__bar--baz__void', expected: 'fooChildBarAsBazChildVoid'},
+            {input: 'foo__bar--baz__void', expected: 'fooChildBarAsBazChildVoid'}
         ];
 
         hierachyTests.forEach(function(test) {

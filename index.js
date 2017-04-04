@@ -79,9 +79,6 @@ const gulpCssScala = function(opts) {
             return callback();
         }
 
-
-        ////-------------------------------------------------
-
         // parse css input and return selectors
         const styleClassSelectorsFromInput= function(input) {
 
@@ -107,8 +104,6 @@ const gulpCssScala = function(opts) {
 
             return output;
         };
-
-        ////-------------------------------------------------
 
         if (file.isBuffer()) {
             inputString = new String(file.contents);

@@ -1,11 +1,11 @@
-#Example for usage of gulp-css-scala
+# Example for usage of gulp-css-scala
 
-###Preparation
+### Preparation
 `npm install`
 
 Will install the dependencies of the example project
 
-###Run
+### Run
 `npm start`
 
 Will run the gulp default task

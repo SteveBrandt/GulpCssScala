@@ -2,10 +2,7 @@
 
 const assert = require('assert'),
     gutil = require('gulp-util'),
-    cssScala = require('../index'),
-    fs = require('fs'),
-    es = require('event-stream'),
-    path = require('path');
+    cssScala = require('../index');
 
 describe('module spec', function() {
 
@@ -34,7 +31,7 @@ describe('module spec', function() {
     });
 
     it('should generate a scala file with custom options', function(done) {
-        const myCssScala = cssScala({packageName:'my.package', objectName: 'MyObject'});
+        const myCssScala = cssScala({ packageName:'my.package', objectName: 'MyObject' });
 
         myCssScala.write(fakeFile);
 

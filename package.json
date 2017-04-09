@@ -4,7 +4,8 @@
   "description": "Gulp Custom Plugin to convert style classes from css file into a scala object",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
+    "test": "./node_modules/.bin/mocha && npm run lint && npm run linttest",
+    "linttest": "./node_modules/.bin/eslint ./test/*.js",
     "lint": "./node_modules/.bin/eslint index.js"
   },
   "keywords": [

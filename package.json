@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha && npm run lint",
-    "lint": "./node_modules/.bin/eslint --ignore-path .npmignore **/*.js"
+    "lint": "./node_modules/.bin/eslint *.js && ./node_modules/.bin/eslint **/*.js"
   },
   "keywords": [
     "gulpplugin",

@@ -112,8 +112,8 @@ describe('logic spec', function() {
         it('should return a valid scala object', function() {
 
             var result = cssScala.__get__('createOutput')({
-                packageName:'com.example.css',
-                objectName:'Css' },
+                    packageName:'com.example.css',
+                    objectName:'Css' },
                 ['.foo']);
 
             var expectedObject = 'package com.example.css\n' +

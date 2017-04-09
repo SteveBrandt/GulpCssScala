@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {},
   "scripts": {
-    "test": "./node_modules/.bin/gulp"
+    "start": "./node_modules/.bin/gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "gulp": "^3.8.10",

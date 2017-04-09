@@ -59,7 +59,7 @@ object Css {
 
 ## Additional css style selectors
 
-```
+```js
 gulp.task('default', function() {
     return gulp.src(['styles/*.css', 'additional-style-class-selectors.txt']).
         pipe(cssScala()).

@@ -74,7 +74,9 @@ gulp.task('default', function() {
 ```js
 cssScala({
     packageName: 'com.example.css', 
-    objectName: 'Css'
+    objectName:  'Css',
+    replaceForDashDash: 'As',
+    replaceForUnderlineUnderline: 'Child'
 })
 ```
 

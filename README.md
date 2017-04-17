@@ -82,4 +82,6 @@ cssScala({
 |---|---|---|
 |packageName|The name of the package of the generated object|com.example.css|
 |objectName|The name of the generated object|Css|
+|replaceForDashDash|replacement for -- in resulting property name|As|
+|replaceForUnderlineUnderline|replacement for __ in resulting property name|Child|
 

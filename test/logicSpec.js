@@ -88,7 +88,8 @@ describe('logic spec', function() {
 
         camelCaseTests.forEach(function(test) {
             it('should return selector "' + test.input + '" in lowerCamelCase', function() {
-                assert.equal(cssScala.__get__('normalizeSelector')(test.input), test.expected);
+                assert.equal(cssScala.__get__('normalizeSelector')(test.input,
+                    { replaceForDashDash: 'As', replaceForUnderlineUnderline: 'Child' }), test.expected);
             });
         });
 
@@ -103,7 +104,8 @@ describe('logic spec', function() {
 
         hierachyTests.forEach(function(test) {
             it('should return selector "' + test.input + '" respecting css hierachy (As, With)', function() {
-                assert.equal(cssScala.__get__('normalizeSelector')(test.input), test.expected);
+                assert.equal(cssScala.__get__('normalizeSelector')(test.input,
+                    { replaceForDashDash: 'As', replaceForUnderlineUnderline: 'Child' }), test.expected);
             });
         });
     });

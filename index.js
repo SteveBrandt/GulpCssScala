@@ -8,7 +8,9 @@ const through = require('through2'),
 
 const defaultOptions = {
     packageName: 'com.example.css',
-    objectName:  'Css'
+    objectName:  'Css',
+    replaceForDashDash: 'As',
+    replaceForUnderlineUnderline: 'Child'
 };
 
 
@@ -45,10 +47,10 @@ const normalizeInput = function(input) {
 // addthis_custom_sharing -> addthisCustomSharing
 // --                     -> As
 // __                     -> Child
-const normalizeSelector = function(selector) {
+const normalizeSelector = function(selector, options) {
     return selector
-        .replace(/--/g, '-As-')
-        .replace(/__/g, '-Child-')
+        .replace(/--/g, '-' + options.replaceForDashDash + '-')
+        .replace(/__/g, '-' + options.replaceForUnderlineUnderline + '-')
         .replace(/_/g, '-')
         .replace(/\./g, '')
         .split('-')
@@ -79,7 +81,12 @@ const createOutput = function(options, selectors) {
         + 'object ' + options.objectName + ' {' + '\n';
 
     selectors.forEach(function(selector) {
-        output += '  val ' + normalizeSelector(selector) + ': String = "' + selector.replace(/\./g, '') + '"' + '\n';
+        output += '  val ' +
+            normalizeSelector(selector, options) +
+            ': String = "' +
+            selector.replace(/\./g, '') +
+            '"' +
+            '\n';
     });
 
     output += '}';

@@ -1,12 +1,12 @@
 'use strict';
 
 const assert = require('assert'),
-    gutil = require('gulp-util'),
+    Vinyl = require('vinyl'),
     cssScala = require('../index');
 
 describe('module spec', function() {
 
-    const fakeFile = new gutil.File({
+    const fakeFile = new Vinyl ({
         path: 'foo.css',
         contents: new Buffer('.foo {color:blue}')
     });

@@ -1,44 +1,44 @@
-.foo{
+.foo {
     color:red;
 }
-.foo{
+.foo {
     color:red;
 }
-.foo{
+.foo {
     color:red;
 }
-.bar{
+.bar {
     color:green;
 }
-.baz{
+.baz {
     color:yellow;
 }
-.foo__bar{
+.foo__bar {
     color:red;
 }
-.bar__baz{
+.bar__baz {
     color:green;
 }
-.baz__foo{
+.baz__foo {
     color:yellow;
 }
-.foo--bar{
+.foo--bar {
     color:red;
 }
 /* comment file.scss */
-.bar--baz{
+.bar--baz {
     color:green;
 }
-.baz--foo{
+.baz--foo {
     color:yellow;
 }
-.foo-bar-baz{
+.foo-bar-baz {
     color:red;
 }
-.foo--bar--baz{
+.foo--bar--baz {
     color:green;
 }
-.foo__bar__baz{
+.foo__bar__baz {
     color:yellow;
 }
 @media (min-width: 30em) and (max-width: 60em) {

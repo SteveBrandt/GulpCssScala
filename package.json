@@ -16,17 +16,17 @@
   "repository": "https://github.com/SteveBrandt/gulp-css-scala",
   "license": "MIT",
   "dependencies": {
-    "merge-options": "1.0.0"
+    "merge-options": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^4.18.2",
     "event-stream": "^3.3.4",
-    "gulp": "^3.9.0",
-    "gulp-dest": "^0.2.2",
-    "gulp-util": "^3.0.6",
+    "gulp": "^3.9.1",
+    "gulp-dest": "^0.2.3",
+    "gulp-util": "^3.0.8",
     "mocha": "^5.0.1",
     "rewire": "^3.0.2",
-    "through2": "^2.0.0"
+    "through2": "^2.0.3"
   },
   "engines": {
     "node": ">= 4.7.2"

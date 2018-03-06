@@ -2,9 +2,9 @@
 
 const PLUGIN_NAME = 'gulp-css-scala';
 const through = require('through2'),
-    gutil = require('gulp-util'),
+    Vinyl = require('vinyl'),
     mergeOptions = require('merge-options'),
-    PluginError = gutil.PluginError;
+    PluginError = require('plugin-error');
 
 const defaultOptions = {
     packageName: 'com.example.css',
@@ -98,10 +98,10 @@ const gulpCssScala = function(opts) {
 
     const options = mergeOptions(defaultOptions, opts);
 
-    var selectors = [];
+    let selectors = [];
 
     return through.obj(function (file, enc, callback) {
-        var inputString = null,
+        let inputString = null,
             result = null,
             outBuffer = null;
 
@@ -116,9 +116,10 @@ const gulpCssScala = function(opts) {
             selectors = styleClassSelectorsFromInput(inputString, selectors);
             result = createOutput(options, selectors);
             outBuffer = new Buffer(result);
-            const aFile = new gutil.File();
-            aFile.path = file.path;
-            aFile.contents = outBuffer;
+            const aFile = new Vinyl ({
+                path: file.path,
+                contents: outBuffer
+            });
             callback(null, aFile);
         } else {
             console.error(new PluginError(PLUGIN_NAME, 'Only Buffer format is supported'));

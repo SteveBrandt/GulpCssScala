@@ -35,6 +35,7 @@ const normalizeInput = function(input) {
         .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
         // remove css definition
         .replace(/{([^}]*)}/gm, '')
+        .replace(/}/gm, '')
         // remove css comments from input
         .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '');
 };

@@ -32,7 +32,7 @@ const beautify = function(array) {
 const normalizeInput = function(input) {
     return input
         // remove media queries
-        .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, ' ')
+        .replace(/@media[^{]*{*/gm, ' ')
         // remove css definition
         .replace(/{([^}]*)}/gm, ' ')
         .replace(/}/gm, ' ')

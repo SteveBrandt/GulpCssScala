@@ -27,10 +27,10 @@ describe('logic spec', function() {
 
     describe('normalizeInput', function() {
         it('should remove @media css definitions', function() {
-            var mediaCss = '\n.fooStyle { color:red }\n'
-                         + '@media screen and (min-width: 480px) {\n'
-                         + '  .bazStyle { background-color: lightgreen; }\n'
-                         + '}\n'
+            var mediaCss = '\n.fooStyle { color:red }'
+                         + '@media screen and (min-width: 480px) {'
+                         + '  .bazStyle { background-color: lightgreen; }'
+                         + '}'
                          + '@media print {\n'
                          + '  .quxStyle { background-color: lightgreen; }\n'
                          + '}\n'
@@ -38,8 +38,6 @@ describe('logic spec', function() {
                          + '.barStyle { color: green }\n';
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);
-
-            console.log(result);
 
             assert.equal(result.includes('.fooStyle'), true);
             assert.equal(result.includes('.barStyle'), true);
@@ -49,10 +47,10 @@ describe('logic spec', function() {
 
 
         it('should remove css bodies', function() {
-            var mediaCss = '\n.fooStyle { color:red }\n'
+            var mediaCss = '\n.fooStyle { color:red }'
                          + '@media print {\n'
                          + '  .barStyle { background-color: lightgreen; }\n'
-                         + '}\n'
+                         + '}'
                          + '.barStyle { color: green }\n';
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);

@@ -32,12 +32,12 @@ const beautify = function(array) {
 const normalizeInput = function(input) {
     return input
         // remove media queries
-        .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, '')
+        .replace(/@media[^{]*{(?:(?!}\s*}).)*/gm, ' ')
         // remove css definition
-        .replace(/{([^}]*)}/gm, '')
-        .replace(/}/gm, '')
+        .replace(/{([^}]*)}/gm, ' ')
+        .replace(/}/gm, ' ')
         // remove css comments from input
-        .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '');
+        .replace( /\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, ' ');
 };
 
 // active                 -> active

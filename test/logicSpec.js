@@ -27,7 +27,7 @@ describe('logic spec', function() {
 
     describe('normalizeInput', function() {
         it('should remove @media css definitions', function() {
-            var mediaCss = '\n.fooStyle { color:red }'
+            var mediaCss = '\n.fooStyle{color:red}body{color:blue}'
                          + '@media screen and (min-width: 480px) {'
                          + '  .bazStyle { background-color: lightgreen; }'
                          + '}'
@@ -39,7 +39,10 @@ describe('logic spec', function() {
 
             var result = cssScala.__get__('normalizeInput')(mediaCss);
 
+            console.log(result);
+
             assert.equal(result.includes('.fooStyle'), true);
+            assert.equal(result.includes('.fooStylebody'), false);
             assert.equal(result.includes('.barStyle'), true);
             assert.equal(result.includes('.bazStyle'), true);
             assert.equal(result.includes('.quxStyle'), true);

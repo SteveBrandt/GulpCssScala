@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-css-scala": "latest"
+    "gulp": "^4.0.0",
+    "gulp-css-scala": "latest",
+    "gulp-rename": "^1.2.2"
   }
 }

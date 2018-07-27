@@ -22,7 +22,7 @@
   "devDependencies": {
     "eslint": "^4.18.2",
     "event-stream": "^3.3.4",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-dest": "^0.2.3",
     "mocha": "^5.0.1",
     "rewire": "^3.0.2",

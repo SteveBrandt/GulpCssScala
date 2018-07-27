@@ -16,4 +16,4 @@ gulp.task('advanced', function() {
         pipe(gulp.dest('dest'));
 });
 
-gulp.task('default', ['simple', 'advanced']);
+gulp.task('default', gulp.series('simple', 'advanced'));

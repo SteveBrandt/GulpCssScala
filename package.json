@@ -20,7 +20,7 @@
     "plugin-error": "^1.0.1"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "eslint": "^5.16.0",
     "event-stream": "^3.3.5",
     "gulp": "^4.0.0",
     "gulp-dest": "^0.2.3",

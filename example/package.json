@@ -9,6 +9,6 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-css-scala": "latest",
-    "gulp-rename": "^1.4.0"
+    "gulp-rename": "^2.0.0"
   }
 }

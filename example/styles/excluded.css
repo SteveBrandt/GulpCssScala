@@ -1,0 +1,7 @@
+.bar-exclude {
+    color: red;
+}
+
+.foo-exclude .bar-exclude {
+    color: red;
+}

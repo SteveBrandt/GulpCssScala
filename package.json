@@ -1,6 +1,6 @@
 {
   "name": "gulp-css-scala",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Gulp Custom Plugin to convert style classes from css file into a scala object",
   "main": "index.js",
   "scripts": {

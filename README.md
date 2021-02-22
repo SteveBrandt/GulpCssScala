@@ -68,6 +68,19 @@ gulp.task('default', function() {
 });
 ```
 
+## Ignore css style selectors
+
+```js
+gulp.task('default', function() {
+    return gulp.src(['styles/*.css']).
+        pipe(cssScala({
+            selectorsToIgnore: ['.foo-exclude .bar-exclude', '.bar-exclude']
+        })).
+        pipe(rename('Css.scala')).
+        pipe(gulp.dest('dest'));
+});
+```
+
 
 ## Options
 
@@ -76,7 +89,8 @@ cssScala({
     packageName: 'com.example.css', 
     objectName:  'Css',
     replaceForDashDash: 'As',
-    replaceForUnderlineUnderline: 'Child'
+    replaceForUnderlineUnderline: 'Child',
+    selectorsToIgnore: []
 })
 ```
 
@@ -86,4 +100,5 @@ cssScala({
 |objectName|The name of the generated object|Css|
 |replaceForDashDash|replacement for -- in resulting property name|As|
 |replaceForUnderlineUnderline|replacement for __ in resulting property name|Child|
+|selectorsToIgnore|Define your selectors which should be **not** processed. Example: `selectorsToIgnore: ['.foo-exclude .bar-exclude', '.bar-exclude']`|[]|
 

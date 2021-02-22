@@ -1,25 +1,25 @@
 'use strict';
 
-var assert = require('assert'),
+const assert = require('assert'),
     rewire = require('rewire');
 
-var cssScala = rewire('../index.js');
+const cssScala = rewire('../index.js');
 
 describe('logic spec', function() {
     describe('beautify', function() {
         it('should remove non class selectors', function() {
-            var testSelectors = ['.foo', '#bar', '.baz'];
+            const testSelectors = ['.foo', '#bar', '.baz'];
 
-            var result = cssScala.__get__('beautify')(testSelectors).toString();
+            const result = cssScala.__get__('beautify')(testSelectors).toString();
 
             assert.equal(result.includes('.foo'), true);
             assert.equal(result.includes('#bar'), false);
         });
 
         it('should remove doubled entries', function() {
-            var testSelectors = ['.foo', '.bar', '.foo'];
+            const testSelectors = ['.foo', '.bar', '.foo'];
 
-            var result = cssScala.__get__('beautify')(testSelectors);
+            const result = cssScala.__get__('beautify')(testSelectors);
 
             assert.equal(result.indexOf('.foo'), result.lastIndexOf('.foo'));
         });
@@ -27,7 +27,7 @@ describe('logic spec', function() {
 
     describe('normalizeInput', function() {
         it('should remove @media css definitions', function() {
-            var mediaCss = '\n.fooStyle{color:red}body{color:blue}'
+            const mediaCss = '\n.fooStyle{color:red}body{color:blue}'
                          + '@media screen and (min-width: 480px) {'
                          + '  .bazStyle { background-color: lightgreen; }'
                          + '}'
@@ -37,7 +37,7 @@ describe('logic spec', function() {
                          + '/* comment file.scss */ '
                          + '.barStyle { color: green }\n';
 
-            var result = cssScala.__get__('normalizeInput')(mediaCss);
+            const result = cssScala.__get__('normalizeInput')(mediaCss, {});
 
             console.log(result);
 
@@ -50,32 +50,69 @@ describe('logic spec', function() {
 
 
         it('should remove css bodies', function() {
-            var mediaCss = '\n.fooStyle { color:red }'
+            const mediaCss = '\n.fooStyle { color:red }'
                          + '@media print {\n'
                          + '  .barStyle { background-color: lightgreen; }\n'
                          + '}'
                          + '.barStyle { color: green }\n';
 
-            var result = cssScala.__get__('normalizeInput')(mediaCss);
+            const result = cssScala.__get__('normalizeInput')(mediaCss, {});
 
             assert.equal(result.includes('.fooStyle'), true);
             assert.equal(result.includes('color'), false);
             assert.equal(result.indexOf('{'), -1);
             assert.equal(result.indexOf('}'), -1);
         });
+
+        it('should ignore defined css selectors', function(){
+
+            const selectorsToIgnore = [
+                '.foo .bar .baz-excluded',
+                '.foo .bar-excluded',
+                '.baz-excluded'];
+
+            const mediaCss = '\n.fooStyle { color:red }'
+                + '\n.baz-excluded { color:red }'
+                + '@media print {\n'
+                + '  .barStyle { background-color: lightgreen; }\n'
+                + '  .foo .bar .baz-excluded { background-color: lightgreen; }\n'
+                + '}'
+                + '.barStyle { color: green }\n'
+                + '.foo .bar-excluded { color: green }\n';
+
+            const result = cssScala.__get__('normalizeInput')(mediaCss, {
+                packageName: 'com.example.css',
+                objectName: 'Css',
+                replaceForDashDash: 'As',
+                replaceForUnderlineUnderline: 'Child',
+                selectorsToIgnore: selectorsToIgnore
+            });
+
+            console.log(result);
+
+            assert.equal(result.includes('.foo .bar .baz-excluded'), false);
+            assert.equal(result.includes('.foo .bar-excluded'), false);
+            assert.equal(result.includes('.baz-excluded'), false);
+            assert.equal(result.includes('.foo '), false);
+            assert.equal(result.includes('.fooStyle'), true);
+            assert.equal(result.includes('color'), false);
+            assert.equal(result.indexOf('{'), -1);
+            assert.equal(result.indexOf('}'), -1);
+
+        });
     });
 
     describe('styleClassSelectorsFromInput', function() {
 
         it('should return class selectors', function() {
-            var css = '\n.fooStyle { color:red }\n'
+            const css = '\n.fooStyle { color:red }\n'
                 + 'div#baz { color:green }\n'
                 + '@media screen and (min-width: 480px) {\n'
                 + '  body { background-color: lightgreen; }\n'
                 + '}\n'
                 + '.barStyle { color: green }\n';
 
-            var result = cssScala.__get__('styleClassSelectorsFromInput')(css, []);
+            const result = cssScala.__get__('styleClassSelectorsFromInput')(css, [], {});
 
             assert.equal(result[0], '.barStyle' );
             assert.equal(result[1], '.fooStyle' );
@@ -84,7 +121,7 @@ describe('logic spec', function() {
 
     describe('normalizeSelector', function() {
 
-        var camelCaseTests = [
+        const camelCaseTests = [
             { input: 'foobar', expected: 'foobar' },
             { input: 'fooBar', expected: 'foobar' },
             { input: 'FooBar', expected: 'foobar' },
@@ -104,7 +141,7 @@ describe('logic spec', function() {
             });
         });
 
-        var hierachyTests = [
+        const hierachyTests = [
             { input: 'foo--bar', expected: 'fooAsBar' },
             { input: 'foo--bar--baz', expected: 'fooAsBarAsBaz' },
             { input: 'foo__bar', expected: 'fooChildBar' },
@@ -124,12 +161,12 @@ describe('logic spec', function() {
     describe('createOutput', function() {
         it('should return a valid scala object', function() {
 
-            var result = cssScala.__get__('createOutput')({
+            const result = cssScala.__get__('createOutput')({
                     packageName:'com.example.css',
                     objectName:'Css' },
                 ['.foo']);
 
-            var expectedObject = 'package com.example.css\n' +
+            const expectedObject = 'package com.example.css\n' +
                 '\n// File is generated by gulp-css-scala\n' +
                 '\nobject Css {\n' +
                 '  val foo: String = "foo"\n' +

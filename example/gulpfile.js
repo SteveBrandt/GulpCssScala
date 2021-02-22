@@ -11,7 +11,11 @@ gulp.task('simple', function() {
 
 gulp.task('advanced', function() {
     return gulp.src(['styles/*.css', 'additional-style-class-selectors.txt']).
-        pipe(cssScala({ objectName:'CssAdvanced', packageName:'com.example.css' })).
+        pipe(cssScala({
+            objectName:'CssAdvanced',
+            packageName:'com.example.css',
+            selectorsToIgnore: ['.foo-exclude .bar-exclude', '.bar-exclude']
+        })).
         pipe(rename('CssAdvanced.scala')).
         pipe(gulp.dest('dest'));
 });
